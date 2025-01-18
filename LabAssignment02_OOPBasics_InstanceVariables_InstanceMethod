@@ -1,0 +1,460 @@
+LabAssignment02_OOPBasics_InstanceVariables_InstanceMethod
+Course Code : CSE111
+Course Title : Programming Language II
+Topic : OOP Basics, Instance Variable and Instance Method
+Name : Turjaun Jannat Primu
+Student ID : 24301064
+Semester : Fall 2024
+
+
+
+
+
+
+
+
+
+//Task_01
+
+
+public class UniversityTester
+{
+  public static void main (String [] args)
+  {
+    
+    //a
+    
+    University uni1=new University();
+    University uni2=new University();
+    
+    
+    
+    System.out.println(uni1);
+    System.out.println(uni2);
+    
+    
+    
+    System.out.println(uni1.name);
+    System.out.println(uni1.country);
+    
+    
+    
+    System.out.println(uni2.name);
+    System.out.println(uni2.country);
+    
+    
+    
+    
+
+
+
+
+    
+    //b
+    
+    uni1.name="Imperial College London";
+    uni1.country="England";
+    
+    
+    
+    uni2.name="Brac University";
+    uni2.country="Bangladesh";
+    
+    
+    
+    System.out.println(uni1.name);
+    System.out.println(uni1.country);
+    
+    
+    
+    System.out.println(uni2.name);
+    System.out.println(uni2.country);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Task_02
+
+
+public class Student
+{
+  
+  public String name;
+  
+  public int id;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+//Task_03
+
+
+public class CSECourse
+{
+  
+  public String courseName="Programming Language II";
+  
+  public String courseCode="CSE111";
+  
+  public int credit=3;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Task_04
+
+
+public class ImaginaryNumber
+{
+  
+  public int realPart;
+  
+  public int imaginaryPart;
+  
+  
+  public void printNumber()
+  {
+    
+    System.out.println(realPart + " + " + imaginaryPart + "i");
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+//Task_05
+
+
+public class Course
+{
+  
+  public String courseName;
+  
+  public String courseCode;
+  
+  public int courseCredit;
+  
+  
+  
+  public void updateDetails (String s1, String s2, int i)
+  {
+    
+    courseName=s1;
+    
+    courseCode=s2;
+    
+    courseCredit=i;
+    
+  }
+  
+  public void displayCourse()
+  {
+    
+    System.out.println("Course Name: " + courseName);
+    
+    System.out.println("Course Code: " + courseCode);
+    
+    System.out.println("Course Credit: " + courseCredit);
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Task_06
+
+
+public class Assignment
+{
+  public int tasks;
+  
+  public String difficulty;
+  
+  boolean submission;
+  
+  
+  public void printDetails()
+  {
+    System.out.println("Number of tasks: " + tasks);
+    
+    System.out.println("Difficulty level: " + difficulty);
+    
+    System.out.println("Submission required: " + submission);
+  }
+  
+  public String makeOptional()
+  {
+    
+    if (submission)
+    {
+      submission=false;
+      
+      return "Assignment will not require submission";
+    }
+    
+    
+    
+    else
+    {
+      return "Submission is already not required";
+    }
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Task_07
+
+
+public class CellPhone
+{
+  public String model;  
+  public String [] storedContact= new String [3];
+  
+  public int stored;
+  public int contacts;
+  
+  
+  public void printDetails()
+  {
+    if (model==null)
+    {
+      System.out.println("Phone Model unknown");
+    }
+    
+    
+    
+    else
+    {
+      System.out.println("Phone Model " + model);
+    }
+    System.out.println("Contacts Stored " + contacts);
+    
+    
+    
+    if (stored>=1)
+    {
+      System.out.println("Stored Contacts: ");
+      
+      for (int i=0; i<stored; i++)
+      {
+        if (storedContact[i]!=null)
+        {
+          System.out.println(storedContact[i]);
+        }
+      }
+      
+      
+      
+    }
+  }
+  
+  
+  public void storeContact(String s)
+  {
+    if (stored<storedContact.length)
+    {
+      System.out.println("Contact Stored");
+      storedContact [stored]=s;
+      
+      stored++;
+      contacts++;
+    }
+    
+    else
+    {
+      System.out.println("Memory full. New contact can't be stored.");
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Task_08
+
+
+public class Employee
+{
+  public String name;
+  public double salary=30000.0;
+  
+  public String designation="junior";
+  public double tax;
+  
+  
+  public void newEmployee(String s1)
+  {
+    name=s1;
+  }
+  
+  
+  public void displayInfo()
+  {
+    System.out.println("Employee Name: " + name);
+    
+    System.out.println("Employee Salary: " + salary + " Tk");
+    
+    System.out.println("Employee Designation: " + designation);
+  }
+  
+  public void calculateTax()
+  {
+    if (salary<=30000.0)
+    {
+      System.out.println("No need to pay tax");
+    }
+    
+   
+    
+    else
+    {
+      if (salary>30000.0 && salary<=50000.0)
+      {
+        tax=(salary*10)/100;
+      }
+      
+            
+      
+      else if (salary>50000)
+      {
+        tax=(salary*30)/100;
+      }
+      
+      System.out.println(name + " Tax Amount " + tax + " Tk");
+    }
+  }
+  
+  
+  
+  
+  public void promoteEmployee(String s2)
+  {
+    designation=s2;
+    System.out.println(name + " has been promoted to " + designation);
+    
+    
+    
+    if (designation.equals("senior"))
+    {
+      salary=salary+25000.0;
+    }
+    
+    
+    
+    else if (designation.equals("lead"))
+    {
+      salary=salary+50000.0;
+    }
+    
+    
+    
+    else if (designation.equals("manager"))
+    {
+      salary=salary+75000.0;
+    }
+    
+    
+    
+    System.out.println("New Salary: " + salary + " Tk");
+  }
+}

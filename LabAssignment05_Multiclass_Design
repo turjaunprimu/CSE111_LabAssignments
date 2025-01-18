@@ -1,0 +1,284 @@
+LabAssignment05_Multiclass_Design
+Course Code : CSE111
+Course Title : Programming Language II
+Topic : Multi-class Design
+Name : Turjaun Jannat Primu
+Student ID : 24301064
+Semester : Fall 2024
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Song Class
+
+
+
+
+
+
+
+public class Song
+{
+  public String title;
+  public String artist;
+  public int length;
+  public Song nextSong;
+  
+  
+  public Song(String title, String artist, int length)            //Task_01
+  {
+    this.title=title;
+    this.artist=artist;
+    this.length=length;
+    this.nextSong=null;
+  }
+  
+  public void songInfo()
+  {
+    System.out.println("Title: " +this.title);
+    System.out.println("Artist: " +this.artist);
+    System.out.println("Length: " +this.length+ " minutes");
+  }
+}
+
+
+
+
+
+
+
+
+//Playlist Class
+
+
+
+public class Playlist
+{
+  public String name;
+  public Song firstSong;
+  
+  
+  public Playlist(String name)                //Task_02
+  {
+    this.name=name;
+    System.out.println(this.name+ " created.");
+  }
+  
+  public void addSong(Song s)               //Task_04
+  {
+    if(this.firstSong==null)
+    {
+      firstSong=s;
+    }
+
+    else
+    {
+      Song temp=this.firstSong;
+      while(temp.nextSong!=null)
+      {
+        temp=temp.nextSong;
+      }
+      
+      temp.nextSong=s;
+    }
+    System.out.println(s.title+ " added to " +this.name+ ".");
+  }
+  
+  public void info()                              //Task_03
+  {
+    System.out.println(this.name+ " has the following songs:");
+    
+    if(firstSong==null)
+    {
+      System.out.println("No songs in " +this.name);
+    }
+    
+    else
+    {
+      Song temp=this.firstSong;
+      int songNumber=1;
+      while(temp!=null)
+      {
+        System.out.println("Song-" + songNumber++);
+        temp.songInfo();
+        temp=temp.nextSong;
+      }
+    }
+  }
+  
+  
+  public void addSong(Song s, int index)               //Task_05
+  {
+    if(index==0)
+    {
+      s.nextSong=this.firstSong;
+      this.firstSong=s;
+      System.out.println(s.title+ " added to " +this.name+ ".");
+      return;
+    }
+    
+    Song temp=this.firstSong;
+    int count=0;
+
+    while(temp!=null && count<index-1) 
+    {
+      temp=temp.nextSong;
+      count++;
+    }
+    
+    if(temp!=null)
+    {
+      s.nextSong=temp.nextSong;
+      temp.nextSong=s;
+      System.out.println(s.title+ " added to " +this.name+ ".");
+    } 
+    
+    else 
+    {
+      System.out.println("Cannot add song to Index " +index);
+    }
+  }
+  
+  
+  
+  public void playSong(String title)                     //Task_06
+  {
+    Song temp=firstSong;
+    boolean found=false;
+    while(temp!=null)
+    {
+      if(temp.title.equals(title))
+      {
+        System.out.println("Playing " +temp.title+ " by " +temp.artist+ ".");
+        found=true;
+        break;
+      }
+      temp=temp.nextSong;
+    }
+    
+    if(!found)
+    {
+      System.out.println(title+ " not found in playlist " +this.name+ ".");
+    }
+    
+  }
+  
+
+
+
+
+
+
+
+
+  
+  public void playSong(int index)                //Task_07
+  {
+    Song temp=firstSong;
+    int count=0;
+    while(temp!=null && count<index)
+    {
+      temp=temp.nextSong;
+      count++;
+    }
+    
+    if(temp!=null)
+    {
+      System.out.println("Playing "+temp.title+ " by " +temp.artist+ ".");
+    }
+
+    else
+    {
+      System.out.println("Song at Index " +index+ " not found in " +this.name+ ".");
+    }
+
+  }
+  
+  
+  
+
+
+
+
+
+  public void deleteSong(String title)            //Task_08
+  {
+    if (firstSong.title.equals(title))
+    {
+      firstSong=firstSong.nextSong;
+      System.out.println(title+ " deleted from " +this.name+ ".");
+      return;
+    }
+    
+    
+    Song temp=firstSong;
+    
+    while (temp.nextSong!=null)
+    {
+      
+      if(temp.nextSong.title.equals(title))
+      {
+        temp.nextSong=temp.nextSong.nextSong;
+        System.out.println(title+ " deleted from " +this.name+ ".");
+        return;
+      }
+      
+      temp=temp.nextSong;
+    }
+    
+    System.out.println(title+ " not found in " +this.name+ ".");
+  }
+  
+
+
+
+
+
+
+
+
+
+  
+  public int totalSong()                  //Task_09
+  {
+    int count=0;
+    Song temp=firstSong;
+    
+    while (temp!=null)
+    {
+      temp=temp.nextSong;
+      count++;
+    }
+    
+    return count;
+  }
+  
+
+
+
+
+  
+  public void merge(Playlist p)                 //Task_10
+  {
+    
+    Song temp=this.firstSong;
+    while (temp.nextSong!=null)
+    {
+      temp=temp.nextSong;
+    }
+    temp.nextSong=p.firstSong;
+    System.out.println("Merge Completed!");
+  }
+}
